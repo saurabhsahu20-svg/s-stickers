@@ -81,9 +81,12 @@ def font(size):
       if Path(p).exists():return ImageFont.truetype(p,size)
     return ImageFont.load_default()
 def caption(d,t,c):
-    f=font(31); b=d.textbbox((0,0),t,font=f); w=b[2]-b[0]; x=256-w/2
-    d.rounded_rectangle((max(15,x-18),390,min(497,x+w+18),449),radius=24,fill="#fff9ff",outline=c,width=4)
-    d.text((x,400-b[1]),t,font=f,fill="#38264d")
+    for size in range(48,23,-1):
+        f=font(size); b=d.textbbox((0,0),t,font=f)
+        if b[2]-b[0]<=444 and b[3]-b[1]<=62:break
+    w=b[2]-b[0];h=b[3]-b[1];x=256-w/2
+    d.rounded_rectangle((max(9,x-19),384,min(503,x+w+19),476),radius=25,fill="#fff9ff",outline=c,width=5)
+    d.text((x-b[0],430-h/2-b[1]),t,font=f,fill="#24132e")
 def make(group,idx,title,seed):
     rng=random.Random(seed); im=Image.new("RGBA",(512,512));d=ImageDraw.Draw(im);c=PALETTE[idx%len(PALETTE)]; alt=PALETTE[(idx//3+3)%len(PALETTE)]
     for k in range(7):

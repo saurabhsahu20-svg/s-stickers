@@ -44,25 +44,25 @@ def render(phrase,roman,script,emotion,index):
     d.rounded_rectangle((23,215,489,469),radius=45,fill="#532763")
     d.polygon([(222,224),(254,183),(282,224)],fill=c)
     d.rounded_rectangle((17,205,495,454),radius=43,fill=c,outline="#fff7ff",width=7)
-    d.rounded_rectangle((32,220,480,439),radius=32,fill="#fff9ff")
+    d.rounded_rectangle((25,218,487,446),radius=32,fill="#fff9ff")
     direction="rtl" if script=="Arabic" else "ltr"
-    for size in range(54,19,-2):
-        f=font_for(script,size);lines=wrap(d,phrase,f,416,direction)
+    for size in range(78,19,-2):
+        f=font_for(script,size);lines=wrap(d,phrase,f,448,direction)
         bounds=[d.textbbox((0,0),s,font=f,direction=direction) for s in lines]
         heights=[b[3]-b[1] for b in bounds]
         h=sum(heights)+9*(len(lines)-1)
-        if len(lines)<=3 and h<=(152 if roman else 196) and all(d.textlength(s,font=f,direction=direction)<=416 for s in lines):break
-    area=155 if roman else 207
-    y=225+(area-h)/2
+        if len(lines)<=3 and h<=(170 if roman else 208) and all(d.textlength(s,font=f,direction=direction)<=448 for s in lines):break
+    area=170 if roman else 208
+    y=220+(area-h)/2
     for s,b,lh in zip(lines,bounds,heights):
         d.text((256-(b[2]-b[0])/2-b[0],y-b[1]),s,font=f,fill="#39224e",direction=direction)
         y+=lh+9
     if roman:
-        for size in range(27,11,-1):
+        for size in range(35,13,-1):
             f=base.font(size)
-            if d.textlength(roman,font=f)<=416:break
+            if d.textlength(roman,font=f)<=448:break
         b=d.textbbox((0,0),roman,font=f)
-        d.text((256-(b[2]-b[0])/2-b[0],400-b[1]),roman,font=f,fill="#71428a")
+        d.text((256-(b[2]-b[0])/2-b[0],405-b[1]),roman,font=f,fill="#3e2152")
     return im
 
 def append(target):
@@ -94,3 +94,6 @@ if __name__=="__main__":
 
     import generate_pb
     generate_pb.append(Path(sys.argv[1]),font_for,wrap)
+
+    import generate_more
+    generate_more.append(Path(sys.argv[1]),font_for,wrap)

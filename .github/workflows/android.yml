@@ -38,7 +38,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y fonts-noto-core fonts-dejavu-core
-          python -m pip install Pillow==11.3.0
+          python -m pip install Pillow==11.4.0
           python -c "from PIL import features; assert features.check_feature('raqm')"
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -55,21 +55,21 @@ jobs:
           with zipfile.ZipFile(sys.argv[1]) as z:
               rows=json.loads(z.read("assets/catalog.json"))
               names=[n for n in z.namelist() if n.startswith("assets/stickers/") and n.endswith(".png")]
-              assert len(rows)==len(names)==1361
-              assert len({r["id"] for r in rows})==1361
+              assert len(rows)==len(names)==1420
+              assert len({r["id"] for r in rows})==1420
               for row in rows:
                   with Image.open(BytesIO(z.read("assets/stickers/"+row["id"]+".png"))) as image:
                       assert image.size==(512,512) and image.mode=="RGBA"
                       image.verify()
-              print("Validated all 1361 packaged sticker images")
+              print("Validated all 1420 packaged sticker images")
           PY
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify "$APK"
           mkdir -p dist
-          cp "$APK" dist/S-Stickers-v1.3.0-debug.apk
+          cp "$APK" dist/S-Stickers-v1.4.0-debug.apk
           cd dist
-          sha256sum S-Stickers-v1.3.0-debug.apk > SHA256SUMS.txt
+          sha256sum S-Stickers-v1.4.0-debug.apk > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: S-Stickers-v1.3.0-debug
+          name: S-Stickers-v1.4.0-debug
           path: dist/
           if-no-files-found: error

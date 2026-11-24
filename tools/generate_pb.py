@@ -42,9 +42,9 @@ def render(phrase,roman,hindi,script,emotion,i,font_for,wrap):
         d.ellipse((336,44,398,94),fill="#ffb44e",outline=c,width=4);d.ellipse((341,41,393,63),fill="#fff4d9",outline=c,width=2)
     else:
         base.star(d,145,68,24,c);base.star(d,367,68,24,c)
-    draw_block(d,phrase,script,font_for,wrap,(39,136,473,295),72,"#21132e",26)
-    draw_block(d,roman,"Latin",font_for,wrap,(40,300,472,355),31,"#38294c",17)
-    draw_block(d,hindi,"Devanagari",font_for,wrap,(42,375,470,459),37,"#ffffff",19)
+    draw_block(d,phrase,script,font_for,wrap,(30,125,482,303),86,"#21132e",26)
+    draw_block(d,roman,"Latin",font_for,wrap,(30,307,482,359),36,"#38294c",17)
+    draw_block(d,hindi,"Devanagari",font_for,wrap,(36,373,476,462),44,"#ffffff",19)
     return im
 
 def append(target,font_for,wrap):
