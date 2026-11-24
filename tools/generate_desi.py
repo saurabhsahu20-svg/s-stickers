@@ -91,3 +91,6 @@ if __name__=="__main__":
     append(Path(sys.argv[1]))
     import generate_cg
     generate_cg.append(Path(sys.argv[1]),render)
+
+    import generate_pb
+    generate_pb.append(Path(sys.argv[1]),font_for,wrap)

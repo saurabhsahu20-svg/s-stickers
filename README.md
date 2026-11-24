@@ -17,3 +17,6 @@ Adds 235 original conversational PNGs across 21 language and cultural greeting p
 
 ## v1.2.0 — Chhattisgarhi Daily Life
 53 additional 512px transparent conversation PNG designs in six Chhattisgarhi topic packs. Preserves previous 1,235 sticker IDs. Adds themed hand-drawn pictograms and native/Roman captions. Three direct threat phrases and one alcohol-themed phrase in the supplied reference were replaced with nonviolent everyday alternatives. Only visible phrases were used. Total build-time catalog: 1288.
+
+## v1.3.0 — Punjabi and Bengali Daily Life
+Adds 73 512px RGBA stickers in 10 topic packs (1361 total), preserving all previous IDs. The native text is dominant, with high-contrast Hindi meanings and Roman pronunciations. Three threats and an alcohol-oriented phrase were replaced with nonviolent everyday phrases; one harsh whereabouts phrase was softened. Punjabi native script and Hindi gloss were added to the reference phrases. Local speaker review is recommended. CI checks packaged asset count and APK signature.
