@@ -11,3 +11,6 @@ No network or storage permissions are required. User favorites and recent histor
 
 ## Notes
 The generator uses a small set of illustration templates and many palette, layout and accent variations. Validation checks the PNG count, dimensions, alpha channel and unique hashes; visual quality and compatibility still require device testing.
+
+## v1.1.0 — Desi Boli
+Adds 235 original conversational PNGs across 21 language and cultural greeting packs (total 1235). Native scripts plus Roman captions where available; Sindhi currently Roman only. Dedicated Desi tab and existing search support. Colloquial phrasing varies by region; native speaker review is recommended. Jain Greetings is a cultural pack, not a language. Build requires Ubuntu fonts-noto-core and Pillow with RAQM. Existing 1,000 sticker IDs are preserved.
