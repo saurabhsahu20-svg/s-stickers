@@ -1,0 +1,350 @@
+[
+  [
+    "Greetings & Haal-Chaal",
+    [
+      [
+        "जय जोहार!",
+        "Jai Johar!",
+        "greet",
+        "wave"
+      ],
+      [
+        "का हाल चाल हे?",
+        "Ka Haal Chaal He?",
+        "happy",
+        "wave"
+      ],
+      [
+        "सब बने-बने?",
+        "Sab Bane-Bane?",
+        "happy",
+        "sparkle"
+      ],
+      [
+        "कहा जात हस?",
+        "Kaha Jaat Has?",
+        "wow",
+        "walk"
+      ],
+      [
+        "कहां ले आत हस?",
+        "Kahan Le Aat Has?",
+        "wow",
+        "question"
+      ],
+      [
+        "का रे संगवारी!",
+        "Ka Re Sangwari!",
+        "happy",
+        "heart"
+      ]
+    ]
+  ],
+  [
+    "Daily Questions & Replies",
+    [
+      [
+        "का करत हस?",
+        "Ka Karat Has?",
+        "wow",
+        "eyes"
+      ],
+      [
+        "का होगे?",
+        "Ka Hoge?",
+        "wow",
+        "question"
+      ],
+      [
+        "काबर अइसे करत हस?",
+        "Kabar Aise Karat Has?",
+        "wow",
+        "question"
+      ],
+      [
+        "हव गा!",
+        "Hao Ga!",
+        "happy",
+        "yes"
+      ],
+      [
+        "नहीं गा / नहीं रे!",
+        "Nahi Ga / Nahi Re!",
+        "angry",
+        "no"
+      ],
+      [
+        "बने हे!",
+        "Bane He!",
+        "happy",
+        "yes"
+      ],
+      [
+        "ठीक हे!",
+        "Thik He!",
+        "happy",
+        "yes"
+      ],
+      [
+        "पता नहीं गा",
+        "Pata Nahi Ga",
+        "wow",
+        "question"
+      ],
+      [
+        "आवत हंव",
+        "Aawat Hon",
+        "happy",
+        "walk"
+      ],
+      [
+        "जात हंव",
+        "Jaat Hon",
+        "happy",
+        "walk"
+      ],
+      [
+        "रुक जा थोड़कन",
+        "Ruk Ja Thodkan",
+        "wow",
+        "stop"
+      ],
+      [
+        "कब आबे?",
+        "Kab Aabe?",
+        "wow",
+        "clock"
+      ]
+    ]
+  ],
+  [
+    "Masti & Friendly Banter",
+    [
+      [
+        "झन फेंक गा!",
+        "Jhan Fek Ga!",
+        "wow",
+        "question"
+      ],
+      [
+        "बड़ा लबरा हस रे!",
+        "Bada Labra Has Re!",
+        "laugh",
+        "sparkle"
+      ],
+      [
+        "का बउरहा कस बात करत हस?",
+        "Ka Bauraha Kas Baat Karat Has?",
+        "laugh",
+        "question"
+      ],
+      [
+        "बहुत होशियार बनत हस!",
+        "Bahut Hoshiyar Banat Has!",
+        "cool",
+        "sparkle"
+      ],
+      [
+        "तोला का मतलब?",
+        "Tola Ka Matlab?",
+        "wow",
+        "question"
+      ],
+      [
+        "लंडुरा कहिं के!",
+        "Landura Kahin Ke!",
+        "laugh",
+        "sparkle"
+      ],
+      [
+        "छोट-बुद्धि",
+        "Chhot-Buddhi",
+        "wow",
+        "question"
+      ],
+      [
+        "बड़ा लल्लू हस!",
+        "Bada Lallu Has!",
+        "laugh",
+        "sparkle"
+      ],
+      [
+        "खचरा कहिं के!",
+        "Khachra Kahin Ke!",
+        "laugh",
+        "sparkle"
+      ]
+    ]
+  ],
+  [
+    "Gussa & Reactions",
+    [
+      [
+        "भक!",
+        "Bhak!",
+        "angry",
+        "no"
+      ],
+      [
+        "चुप रहिबे!",
+        "Chup Rahibe!",
+        "quiet",
+        "stop"
+      ],
+      [
+        "दिमाग झन चाट!",
+        "Dimag Jhan Chat!",
+        "angry",
+        "no"
+      ],
+      [
+        "झन भौंक!",
+        "Jhan Bhonk!",
+        "angry",
+        "stop"
+      ],
+      [
+        "तोर से नहीं बनय!",
+        "Tor Se Nahi Banay!",
+        "sad",
+        "no"
+      ],
+      [
+        "काबर चिड़चिड़त हस?",
+        "Kabar Chidhidat Has?",
+        "angry",
+        "question"
+      ],
+      [
+        "जा ना गा!",
+        "Ja Na Ga!",
+        "angry",
+        "walk"
+      ],
+      [
+        "माटी-पली कर दिस",
+        "Matti-Pali Kar Dis",
+        "sad",
+        "no"
+      ],
+      [
+        "कहा मर गए रहिस?",
+        "Kaha Mar Gaye Rahis?",
+        "angry",
+        "question"
+      ],
+      [
+        "मोर दिमाग झन खराब कर!",
+        "Mor Dimag Jhan Kharab Kar!",
+        "angry",
+        "stop"
+      ],
+      [
+        "जादा मस्ती झन कर!",
+        "Jada Masti Jhan Kar!",
+        "angry",
+        "stop"
+      ],
+      [
+        "अब बस कर गा!",
+        "Ab Bas Kar Ga!",
+        "angry",
+        "stop"
+      ],
+      [
+        "भाग यहां ले!",
+        "Bhaag Yahan Le!",
+        "angry",
+        "walk"
+      ]
+    ]
+  ],
+  [
+    "Khana-Peena",
+    [
+      [
+        "खाना खा ले हस?",
+        "Khana Kha Le Has?",
+        "wow",
+        "food"
+      ],
+      [
+        "भूख लगत हे",
+        "Bhookh Lagat He",
+        "sad",
+        "food"
+      ],
+      [
+        "बासी खाबे का?",
+        "Basi Khaabe Ka?",
+        "happy",
+        "food"
+      ],
+      [
+        "पानी पीबे का?",
+        "Paani Pibe Ka?",
+        "happy",
+        "water"
+      ],
+      [
+        "पेट भर गे",
+        "Pet Bhar Ge",
+        "happy",
+        "food"
+      ],
+      [
+        "बहुत स्वाद लगिस",
+        "Bahut Swad Lagis",
+        "laugh",
+        "food"
+      ],
+      [
+        "नाश्ता के का व्यवस्था हे?",
+        "Nashta Ke Ka Vyavastha He?",
+        "wow",
+        "food"
+      ],
+      [
+        "चल घूम के आबो",
+        "Chal Ghum Ke Aabo",
+        "happy",
+        "walk"
+      ]
+    ]
+  ],
+  [
+    "Ghar-Parivar & Maya",
+    [
+      [
+        "काम-बूता होगे?",
+        "Kaam-Buta Hoge?",
+        "wow",
+        "clock"
+      ],
+      [
+        "सुते बर जात हंव",
+        "Sute Bar Jaat Hon",
+        "sleep",
+        "moon"
+      ],
+      [
+        "बिहनिया मिलबो",
+        "Bihaniya Milbo",
+        "happy",
+        "sun"
+      ],
+      [
+        "जल्दी आबे",
+        "Jaldi Aabe",
+        "wow",
+        "clock"
+      ],
+      [
+        "तोर सुरता आत हे",
+        "Tor Surta Aat He",
+        "sad",
+        "heart"
+      ]
+    ]
+  ]
+]

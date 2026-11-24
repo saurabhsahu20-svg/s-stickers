@@ -89,3 +89,5 @@ def append(target):
 if __name__=="__main__":
     base.main()
     append(Path(sys.argv[1]))
+    import generate_cg
+    generate_cg.append(Path(sys.argv[1]),render)

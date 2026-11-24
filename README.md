@@ -14,3 +14,6 @@ The generator uses a small set of illustration templates and many palette, layou
 
 ## v1.1.0 — Desi Boli
 Adds 235 original conversational PNGs across 21 language and cultural greeting packs (total 1235). Native scripts plus Roman captions where available; Sindhi currently Roman only. Dedicated Desi tab and existing search support. Colloquial phrasing varies by region; native speaker review is recommended. Jain Greetings is a cultural pack, not a language. Build requires Ubuntu fonts-noto-core and Pillow with RAQM. Existing 1,000 sticker IDs are preserved.
+
+## v1.2.0 — Chhattisgarhi Daily Life
+53 additional 512px transparent conversation PNG designs in six Chhattisgarhi topic packs. Preserves previous 1,235 sticker IDs. Adds themed hand-drawn pictograms and native/Roman captions. Three direct threat phrases and one alcohol-themed phrase in the supplied reference were replaced with nonviolent everyday alternatives. Only visible phrases were used. Total build-time catalog: 1288.
