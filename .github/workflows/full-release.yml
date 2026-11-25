@@ -1,0 +1,87 @@
+name: S Stickers 2.4.0 Release Build
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: s-stickers-v240-release
+  cancel-in-progress: false
+jobs:
+  build:
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v2.4.0'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      SOURCE_ZIP: S-Stickers-v2.4.0-Regional-Idioms-WhatsApp-Source.zip
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve and verify exact full source
+        run: |
+          gh release download v2.4.0 --pattern "$SOURCE_ZIP" --dir "$RUNNER_TEMP"
+          echo "3cafe1132aa4f1c1f5dc30a4784a038d1fa26e4d0fae6cbab208519bafa2c927  $RUNNER_TEMP/$SOURCE_ZIP" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/full-source"
+          unzip -q "$RUNNER_TEMP/$SOURCE_ZIP" -d "$RUNNER_TEMP/full-source"
+          test -f "$RUNNER_TEMP/full-source/app/build.gradle"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Configure hosted Android SDK
+        run: |
+          SDK="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          manager="$(find "$SDK/cmdline-tools" -path '*/bin/sdkmanager' -type f | sort -V | tail -n 1)"
+          test -x "$manager"
+          if [ ! -f "$SDK/platforms/android-35/android.jar" ] || [ ! -x "$SDK/build-tools/35.0.0/apksigner" ]; then
+            set +o pipefail
+            yes | "$manager" --sdk_root="$SDK" --licenses >/dev/null
+            set -o pipefail
+            "$manager" --sdk_root="$SDK" "platforms;android-35" "build-tools;35.0.0"
+          fi
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install Pillow==11.3.0
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+      - name: Validate full collection and build
+        working-directory: ${{ runner.temp }}/full-source
+        env:
+          SIGNING_KEY: ${{ secrets.S_STICKERS_KEYSTORE_BASE64 }}
+          KS_PASS: ${{ secrets.S_STICKERS_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.S_STICKERS_KEY_ALIAS }}
+          KEY_PASS: ${{ secrets.S_STICKERS_KEY_PASSWORD }}
+        run: |
+          python tools/validate_assets.py
+          mkdir -p "$RUNNER_TEMP/dist"
+          if [ -n "$SIGNING_KEY" ]; then
+            test -n "$KS_PASS" && test -n "$KEY_ALIAS" && test -n "$KEY_PASS"
+            umask 077
+            printf '%s' "$SIGNING_KEY" | base64 --decode > "$RUNNER_TEMP/release.jks"
+            trap 'rm -f "$RUNNER_TEMP/release.jks"' EXIT
+            gradle --no-daemon --stacktrace :app:assembleRelease
+            "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f 4 app/build/outputs/apk/release/app-release-unsigned.apk "$RUNNER_TEMP/aligned.apk"
+            APK="$RUNNER_TEMP/dist/S-Stickers-v2.4.0.apk"
+            "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign --ks "$RUNNER_TEMP/release.jks" --ks-key-alias "$KEY_ALIAS" --ks-pass env:KS_PASS --key-pass env:KEY_PASS --out "$APK" "$RUNNER_TEMP/aligned.apk"
+          else
+            gradle --no-daemon --stacktrace :app:assembleDebug
+            APK="$RUNNER_TEMP/dist/S-Stickers-v2.4.0-test.apk"
+            cp app/build/outputs/apk/debug/app-debug.apk "$APK"
+            echo "::warning::No existing signing key configured. Test APK requires a fresh install if certificates differ."
+          fi
+          python tools/validate_assets.py "$APK"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK"
+          cd "$RUNNER_TEMP/dist"
+          sha256sum *.apk > SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: S-Stickers-v2.4.0-2251-stickers
+          path: ${{ runner.temp }}/dist/
+          if-no-files-found: error
+      - name: Publish verified APK to GitHub release
+        run: gh release upload v2.4.0 "$RUNNER_TEMP"/dist/*.apk "$RUNNER_TEMP/dist/SHA256SUMS.txt" --clobber
