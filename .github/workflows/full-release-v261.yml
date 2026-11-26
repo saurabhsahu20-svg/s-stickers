@@ -1,4 +1,4 @@
-name: StickU 2.6.1 Release Build
+name: StickU 2.7.0 Release Build
 on:
   release:
     types: [published, edited]
@@ -12,23 +12,24 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: s-stickers-v261-release
+  group: s-stickers-v270-release
   cancel-in-progress: false
 jobs:
   build:
-    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v2.6.1' || github.event.release.tag_name == 'StickU'
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'v2.7.0' || github.event.release.tag_name == 'StickU'
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
       RELEASE_TAG: ${{ inputs.release_tag || github.event.release.tag_name }}
-      SOURCE_ZIP: StickU-v2.6.1-Recovered-Source.zip
+      SOURCE_ZIP: StickU-v2.7.0-Social-WhatsApp-Source.zip
     steps:
       - uses: actions/checkout@v4
       - name: Retrieve and verify exact full source
         run: |
           gh release download "$RELEASE_TAG" --pattern "$SOURCE_ZIP" --dir "$RUNNER_TEMP"
+          echo "cda6a5afd3ecb29b7424f45ffe50199ca29687ebbf552a6d5f5c782e1f7754e7  $RUNNER_TEMP/$SOURCE_ZIP" | sha256sum -c -
           unzip -tq "$RUNNER_TEMP/$SOURCE_ZIP"
           mkdir -p "$RUNNER_TEMP/full-source"
           unzip -q "$RUNNER_TEMP/$SOURCE_ZIP" -d "$RUNNER_TEMP/full-source"
@@ -105,11 +106,11 @@ jobs:
             trap 'rm -f "$RUNNER_TEMP/release.p12"' EXIT
             gradle --no-daemon --stacktrace :app:assembleRelease
             "$ANDROID_HOME/build-tools/35.0.0/zipalign" -f 4 app/build/outputs/apk/release/app-release-unsigned.apk "$RUNNER_TEMP/aligned.apk"
-            APK="$RUNNER_TEMP/dist/StickU-v2.6.1.apk"
+            APK="$RUNNER_TEMP/dist/StickU-v2.7.0.apk"
             "$ANDROID_HOME/build-tools/35.0.0/apksigner" sign --ks "$RUNNER_TEMP/release.p12" --ks-type PKCS12 --ks-key-alias "$KEY_ALIAS" --ks-pass env:KS_PASS --key-pass env:KEY_PASS --out "$APK" "$RUNNER_TEMP/aligned.apk"
           else
             gradle --no-daemon --stacktrace :app:assembleDebug
-            APK="$RUNNER_TEMP/dist/StickU-v2.6.1-test.apk"
+            APK="$RUNNER_TEMP/dist/StickU-v2.7.0-test.apk"
             cp app/build/outputs/apk/debug/app-debug.apk "$APK"
             echo "::warning::No existing signing key configured. Test APK requires a fresh install if certificates differ."
           fi
@@ -123,7 +124,7 @@ jobs:
           sha256sum *.apk > SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: StickU-v2.6.1-1843-stickers
+          name: StickU-v2.7.0-1843-stickers
           path: ${{ runner.temp }}/dist/
           if-no-files-found: error
       - name: Publish verified APK to GitHub release
